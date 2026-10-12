@@ -1,0 +1,4 @@
+Target,Baseline,AP_LGB_Mean,AP_LGB_CI_Low,AP_LGB_CI_High,AP_Diff_Mean,AP_Diff_CI_Low,AP_Diff_CI_High,Brier_Diff_Mean,Brier_Diff_CI_Low,Brier_Diff_CI_High
+onset_1,Baseline_B,0.5178,0.4967,0.5367,0.0198,0.0082,0.0317,-0.0016,-0.0027,-0.0005
+onset_3,Baseline_B,0.7964,0.7795,0.8112,0.0096,0.0039,0.0156,-0.0014,-0.0036,0.0006
+onset_6,Baseline_B,0.9163,0.9049,0.9266,0.0057,0.001,0.0113,0.0017,-0.001,0.0046

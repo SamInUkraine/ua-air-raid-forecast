@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+.cache/
+*.pkl
+.pytest_cache/
+.vscode/
+ukrainian-air-raid-sirens-dataset/

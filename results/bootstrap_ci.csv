@@ -1,0 +1,10 @@
+Target,Group,Baseline,AP_LGB_Mean,AP_LGB_CI_Low,AP_LGB_CI_High,AP_Diff_Mean,AP_Diff_CI_Low,AP_Diff_CI_High,Brier_Diff_Mean,Brier_Diff_CI_Low,Brier_Diff_CI_High
+onset_1,ALL,Baseline_B,0.5495,0.5206,0.5757,0.0323,0.0068,0.0617,-0.0032,-0.0067,-0.0004
+onset_1,Frontline,Baseline_B,0.8628,0.8269,0.8937,0.014,-0.0097,0.039,0.0106,0.0015,0.0202
+onset_1,Rear,Baseline_B,0.3817,0.3533,0.4075,0.0317,-0.0066,0.0726,-0.0039,-0.0072,-0.001
+onset_3,ALL,Baseline_B,0.77,0.7364,0.7972,0.0513,0.0238,0.0833,-0.0112,-0.0192,-0.0048
+onset_3,Frontline,Baseline_B,0.9803,0.9697,0.9892,0.0149,0.0044,0.0263,-0.0026,-0.0122,0.0058
+onset_3,Rear,Baseline_B,0.6881,0.6467,0.7258,0.0637,0.0223,0.1089,-0.0117,-0.0193,-0.0047
+onset_6,ALL,Baseline_B,0.8505,0.8166,0.8805,0.049,0.0266,0.0781,-0.0165,-0.0253,-0.0088
+onset_6,Frontline,Baseline_D,0.9952,0.9884,0.9992,0.0114,0.0026,0.0216,-0.0062,-0.0112,-0.0007
+onset_6,Rear,Baseline_B,0.811,0.7718,0.8459,0.0579,0.0273,0.0979,-0.0172,-0.0266,-0.0088
