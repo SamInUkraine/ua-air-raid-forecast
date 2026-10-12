@@ -45,6 +45,7 @@ Honest reading:
 - Frontline: at 1 h LightGBM is **worse** than baseline B (BSS -5.6%, CI above 0); at 3 h it is not significantly different; at 6 h it is better than the constant baseline D. Prevalence is so high there that Always-Positive is a strong reference.
 - The 7-day baseline B is strong: this is an autocorrelated process, so "what happened this week" explains much; the real gain is moderate, not dramatic.
 - Most important feature groups: oblast, time since last alert, national activity, hour of day (`results/feature_importance.csv`).
+- Ablation (ablation_no_nat_active.py, results_ablation/): removing the national feature nat_active_oblasts_cnt (the only feature whose real-time availability depends on how the source records end times) does not worsen results (Rear BSS +4.5% / +12.2% / +16.8% at 1/3/6 h), so the conclusions do not rely on it.
 
 Figures are in `figures/`, all numeric tables in `results/` (`metrics_summary.csv`, `bootstrap_ci.csv`, `rear_by_region.csv`, `feature_importance.csv`, `test_predictions.csv`, `results_tables.md`).
 
@@ -64,8 +65,9 @@ python run_pipeline.py                   # panel (cached in .cache/), models, me
 python results_table.py                  # results/results_tables.md
 python plot_figures.py                   # figures/
 python volunteer_check.py               # robustness check on the freshest (volunteer) data -> results_volunteer/
+python ablation_no_nat_active.py        # ablation without nat_active_oblasts_cnt -> results_ablation/
 ```
 The first run builds the hourly panel and takes several minutes; later runs use the cache.
 
 ## Files
-`features.py` (cleaning, panel, leakage-safe features), `run_pipeline.py` (splits, models, baselines, bootstrap), `results_table.py`, `plot_figures.py`, `sources_check.py` (comparison of data sources), `tests/test_no_leakage.py`, `volunteer_check.py`.
+`features.py` (cleaning, panel, leakage-safe features), `run_pipeline.py` (splits, models, baselines, bootstrap), `results_table.py`, `plot_figures.py`, `sources_check.py` (comparison of data sources), `tests/test_no_leakage.py`, `volunteer_check.py,`, `ablation_no_nat_active.py` (ablation, results in `results_ablation/`).

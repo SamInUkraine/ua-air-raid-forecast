@@ -1,0 +1,17 @@
+{
+  "cleaning": {
+    "raw_rows": 299275,
+    "rows_with_missing_time_dropped": 0,
+    "clean_rows": 164617
+  },
+  "last_valid_label_time": "2026-09-06 23:00:00+00:00",
+  "test_end_used": "2026-09-06 23:00:00+00:00",
+  "frontline_oblasts": [
+    "Chernihivska oblast",
+    "Dnipropetrovska oblast",
+    "Donetska oblast",
+    "Kharkivska oblast",
+    "Sumska oblast",
+    "Zaporizka oblast"
+  ]
+}
