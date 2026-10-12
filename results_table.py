@@ -22,10 +22,10 @@ keep = []
 for (t, g), d in m.groupby(['Target', 'Group'], sort=False):
     best = d['Best_Baseline_Used'].iloc[0]
     keep.append(d[d['Model'].isin(['LightGBM', best, 'Always_Positive'])])
-tbl = pd.concat(keep)[['Target', 'Group', 'Model', 'N', 'Prevalence', 'AP', 'Lift', 'Brier', 'BSS (%)', 'F1_Test']]
+tbl = pd.concat(keep)[['Target', 'Group', 'Model', 'N', 'Prevalence', 'AP', 'Lift', 'Brier', 'BSS (%)', 'Precision_Test', 'Recall_Test', 'F1_Test']]
 
 out = ['### Test metrics (AP = average precision; BSS relative to best baseline chosen on Val)', '', md(tbl), '',
        '### Block-bootstrap (by day) 95% CI of LightGBM − best baseline', '', md(b), '']
 path = os.path.join(a.results_dir, 'results_tables.md')
 open(path, 'w', encoding='utf-8').write('\n'.join(out))
-print('Збережено', path)
+print('Saved', path)

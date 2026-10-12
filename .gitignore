@@ -4,4 +4,7 @@ __pycache__/
 *.pkl
 .pytest_cache/
 .vscode/
-ukrainian-air-raid-sirens-dataset/
+ukrainian-air-raid-sirens-dataset
+*.zip
+results_sensitivity/**/test_predictions.csv
+results_ablation/test_predictions.csv

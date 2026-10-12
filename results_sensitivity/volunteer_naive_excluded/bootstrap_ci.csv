@@ -1,0 +1,4 @@
+Target,Group,Baseline,N_days,N_boot_used,AP_LGB_Mean,AP_LGB_CI_Low,AP_LGB_CI_High,AP_Diff_Mean,AP_Diff_CI_Low,AP_Diff_CI_High,Brier_Diff_Mean,Brier_Diff_CI_Low,Brier_Diff_CI_High
+onset_1,ALL,Baseline_B,43,1000,0.5209,0.5005,0.5397,0.0201,0.0078,0.0317,-0.0017,-0.0029,-0.0005
+onset_3,ALL,Baseline_B,43,1000,0.789,0.7715,0.8059,0.0095,-0.0,0.0203,-0.0021,-0.0059,0.0012
+onset_6,ALL,Baseline_B,43,1000,0.8942,0.8827,0.9054,0.0068,0.0002,0.0145,-0.0012,-0.0068,0.0037

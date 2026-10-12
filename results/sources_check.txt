@@ -3,6 +3,7 @@ volunteer max started/finished: 2026-10-12 04:49:48+00:00 2026-10-12 04:59:03+00
 volunteer episodes after 2026-09-07: 5323
 names only in official: [] | only in volunteer: ['Luhanska oblast']
 volunteer rows: 116,174; naive: 5,834 (5.0%); exactly 30 min: 5,877 (of which naive 5,834)
+naive end = start + 30 min exactly: True
 naive share by month (last 6):
 s
 2026-05    0.041
@@ -11,20 +12,32 @@ s
 2026-08    0.045
 2026-09    0.063
 2026-10    0.096
+naive share by region, last 42 days (6,347 rows), top 8:
+                          mean  size
+oblast                              
+Ternopilska oblast       0.484    31
+Donetska oblast          0.421   152
+Ivano-Frankivska oblast  0.417    12
+Khmelnytska oblast       0.321    81
+Khersonska oblast        0.277   191
+Kyiv City                0.256   195
+Cherkaska oblast         0.246   203
+Rivnenska oblast         0.235   115
+official rows with duration exactly 3599/3600/3601 s: [20, 146, 10] (the 3600 s spike = processor-imputed ends, see features.py)
 
-Hourly state, 2025-11-01..2026-09-06 23:00 (official = union of oblast+raion alerts, hromada excluded):
+Hourly state, 2025-11-01 00:00+00:00..2026-09-07 04:00:00+00:00 (official = union of oblast+raion alerts, hromada excluded):
                  oblast  official_active_share  volunteer_active_share  hourly_agreement  cohen_kappa
  Dnipropetrovska oblast                  0.898                   0.174             0.272        0.041
         Donetska oblast                  0.898                   0.194             0.295        0.052
       Kharkivska oblast                  0.821                   0.209             0.385        0.104
         Volynska oblast                  0.019                   0.149             0.855        0.110
           Sumska oblast                  0.779                   0.196             0.415        0.127
-         Lvivska oblast                  0.013                   0.091             0.912        0.132
-       Zaporizka oblast                  0.738                   0.202             0.460        0.159
-    Chernihivska oblast                  0.652                   0.214             0.559        0.249
+         Lvivska oblast                  0.013                   0.091             0.911        0.132
+       Zaporizka oblast                  0.737                   0.202             0.461        0.159
+    Chernihivska oblast                  0.651                   0.214             0.560        0.249
      Zakarpatska oblast                  0.027                   0.032             0.960        0.288
      Ternopilska oblast                  0.015                   0.040             0.963        0.320
-     Khmelnytska oblast                  0.028                   0.041             0.962        0.433
+     Khmelnytska oblast                  0.028                   0.041             0.962        0.434
     Chernivetska oblast                  0.018                   0.046             0.966        0.455
          Kyivska oblast                  0.198                   0.079             0.870        0.471
       Khersonska oblast                  0.282                   0.142             0.820        0.476
@@ -32,14 +45,14 @@ Hourly state, 2025-11-01..2026-09-06 23:00 (official = union of oblast+raion ale
           Odeska oblast                  0.207                   0.097             0.883        0.555
      Zhytomyrska oblast                  0.095                   0.056             0.938        0.560
               Kyiv City                  0.065                   0.045             0.956        0.580
-       Cherkaska oblast                  0.122                   0.069             0.928        0.590
-     Mykolaivska oblast                  0.233                   0.140             0.879        0.607
+       Cherkaska oblast                  0.122                   0.069             0.929        0.590
+     Mykolaivska oblast                  0.233                   0.141             0.879        0.607
        Vinnytska oblast                  0.049                   0.025             0.973        0.620
-   Kirovohradska oblast                  0.172                   0.096             0.917        0.644
+   Kirovohradska oblast                  0.172                   0.096             0.917        0.645
        Rivnenska oblast                  0.038                   0.023             0.983        0.716
 Ivano-Frankivska oblast                  0.013                   0.009             0.995        0.783
 
 median kappa 0.463; mean hourly agreement 0.790
-official episodes with a volunteer start within 5 min: 9028/19969 (45.2%)
-volunteer episodes with an official start within 5 min: 9010/31574 (28.5%)
-median distance from official episode start to nearest volunteer start: 10.0 min
+official episodes with a volunteer start within 5 min: 9031/19982 (45.2%)
+volunteer episodes with an official start within 5 min: 9013/31590 (28.5%)
+median distance from official episode start to nearest volunteer start: 10.1 min

@@ -1,0 +1,273 @@
+{
+  "run_time_utc": "2026-10-12T15:29:39+00:00",
+  "run_time_kyiv": "2026-10-12T18:29:39+03:00",
+  "command": "python3 volunteer_check.py --naive-policy exclude --out results_sensitivity/volunteer_naive_excluded",
+  "environment": {
+    "python": "3.13.16",
+    "pandas": "3.0.5",
+    "numpy": "2.5.3",
+    "scikit-learn": "1.9.1",
+    "lightgbm": "4.7.0"
+  },
+  "source": {
+    "source_repo": "https://github.com/Vadimkin/ukrainian-air-raid-sirens-dataset",
+    "data_file": "datasets/volunteer_data_en.csv",
+    "data_sha256": "b6c0160f0b4e6a83fa0d6f5dfbf1a3c623b6122819d37185f99b57d7587da14b",
+    "data_file_mtime_utc (approx. retrieval time)": "2026-10-12T15:08:34+00:00",
+    "dataset_git_head": "d10c80fa696bab42822b9f05b423fc8a30e79d20",
+    "dataset_git_head_time": "2026-10-12T05:05:17+00:00",
+    "data_file_last_changed_in_commit_time": "2026-10-12T05:05:17+00:00",
+    "open_alert_snapshot": "processors/pkl/volunteer_active_alerts.pkl",
+    "open_alert_snapshot_sha256": "b220d27338b1131d37f27feb0c39fe228762f21618b62eb284fe8b381c0fcea4"
+  },
+  "freshness": {
+    "latest_raw_start_utc": "2026-10-12 04:49:48+00:00",
+    "data_cut_utc": "2026-10-12 05:03:39+00:00",
+    "data_age_days_at_run": 0.43
+  },
+  "cleaning_and_filtering": {
+    "source_file": "volunteer_data_en.csv",
+    "raw_rows": 116174,
+    "naive_policy": "exclude",
+    "exact_duplicates_dropped": 0,
+    "missing_or_malformed_time_dropped": 0,
+    "same_region_same_start_dropped": 0,
+    "naive_rows": 5834,
+    "open_at_cut_unmapped_oblast": 0,
+    "open_at_cut_total": 18,
+    "open_at_cut_stale_dropped": 1,
+    "open_at_cut_used": 17,
+    "naive_rows_excluded": 5834,
+    "clean_rows": 110357,
+    "data_cut_utc": "2026-10-12 05:03:39+00:00"
+  },
+  "events_fingerprint_sha256": "73883b334c225c1bc03c8f0f6515c8293fa0723ee57613d2b0534a537e1c6102",
+  "seed": 42,
+  "last_valid_label_origin_utc": "2026-10-11 23:00:00+00:00",
+  "last_valid_rule": "t + 6h <= data_cut (open-at-cut alerts attached from the source snapshot)",
+  "splits_utc": {
+    "train": [
+      "2025-11-01 00:00:00+00:00",
+      "2026-07-31 23:00:00+00:00"
+    ],
+    "val": [
+      "2026-08-02 00:00:00+00:00",
+      "2026-08-29 23:00:00+00:00"
+    ],
+    "test": [
+      "2026-08-31 00:00:00+00:00",
+      "2026-10-11 23:00:00+00:00"
+    ]
+  },
+  "split_config": {
+    "test_days": 42,
+    "val_days": 28,
+    "gap_hours": 24
+  },
+  "split_rows": [
+    {
+      "Target": "onset_1",
+      "Split": "train",
+      "Start": "2025-11-01 00:00:00+00:00",
+      "End": "2026-07-31 23:00:00+00:00",
+      "Panel_rows": 157248,
+      "Active_rows_excluded": 15690,
+      "Warmup_NaN_dropped": 0,
+      "Eligible_rows": 141558,
+      "Positives": 21482,
+      "Prevalence": 0.1518
+    },
+    {
+      "Target": "onset_1",
+      "Split": "val",
+      "Start": "2026-08-02 00:00:00+00:00",
+      "End": "2026-08-29 23:00:00+00:00",
+      "Panel_rows": 16128,
+      "Active_rows_excluded": 1671,
+      "Warmup_NaN_dropped": 0,
+      "Eligible_rows": 14457,
+      "Positives": 2596,
+      "Prevalence": 0.1796
+    },
+    {
+      "Target": "onset_1",
+      "Split": "test",
+      "Start": "2026-08-31 00:00:00+00:00",
+      "End": "2026-10-11 23:00:00+00:00",
+      "Panel_rows": 24192,
+      "Active_rows_excluded": 2731,
+      "Warmup_NaN_dropped": 0,
+      "Eligible_rows": 21461,
+      "Positives": 4612,
+      "Prevalence": 0.2149
+    },
+    {
+      "Target": "onset_3",
+      "Split": "train",
+      "Start": "2025-11-01 00:00:00+00:00",
+      "End": "2026-07-31 23:00:00+00:00",
+      "Panel_rows": 157248,
+      "Active_rows_excluded": 15690,
+      "Warmup_NaN_dropped": 0,
+      "Eligible_rows": 141558,
+      "Positives": 46860,
+      "Prevalence": 0.331
+    },
+    {
+      "Target": "onset_3",
+      "Split": "val",
+      "Start": "2026-08-02 00:00:00+00:00",
+      "End": "2026-08-29 23:00:00+00:00",
+      "Panel_rows": 16128,
+      "Active_rows_excluded": 1671,
+      "Warmup_NaN_dropped": 0,
+      "Eligible_rows": 14457,
+      "Positives": 5233,
+      "Prevalence": 0.362
+    },
+    {
+      "Target": "onset_3",
+      "Split": "test",
+      "Start": "2026-08-31 00:00:00+00:00",
+      "End": "2026-10-11 23:00:00+00:00",
+      "Panel_rows": 24192,
+      "Active_rows_excluded": 2731,
+      "Warmup_NaN_dropped": 0,
+      "Eligible_rows": 21461,
+      "Positives": 9253,
+      "Prevalence": 0.4312
+    },
+    {
+      "Target": "onset_6",
+      "Split": "train",
+      "Start": "2025-11-01 00:00:00+00:00",
+      "End": "2026-07-31 23:00:00+00:00",
+      "Panel_rows": 157248,
+      "Active_rows_excluded": 15690,
+      "Warmup_NaN_dropped": 0,
+      "Eligible_rows": 141558,
+      "Positives": 66336,
+      "Prevalence": 0.4686
+    },
+    {
+      "Target": "onset_6",
+      "Split": "val",
+      "Start": "2026-08-02 00:00:00+00:00",
+      "End": "2026-08-29 23:00:00+00:00",
+      "Panel_rows": 16128,
+      "Active_rows_excluded": 1671,
+      "Warmup_NaN_dropped": 0,
+      "Eligible_rows": 14457,
+      "Positives": 7032,
+      "Prevalence": 0.4864
+    },
+    {
+      "Target": "onset_6",
+      "Split": "test",
+      "Start": "2026-08-31 00:00:00+00:00",
+      "End": "2026-10-11 23:00:00+00:00",
+      "Panel_rows": 24192,
+      "Active_rows_excluded": 2731,
+      "Warmup_NaN_dropped": 0,
+      "Eligible_rows": 21461,
+      "Positives": 12457,
+      "Prevalence": 0.5804
+    }
+  ],
+  "frontline_oblasts": [],
+  "frontline_rule": "not used",
+  "features": [
+    "oblast",
+    "hours_since_last_finish",
+    "starts_1h",
+    "starts_3h",
+    "starts_6h",
+    "starts_24h",
+    "starts_168h",
+    "nat_active_oblasts_cnt",
+    "nat_starts_1h",
+    "nat_starts_3h",
+    "hour_of_day_kyiv",
+    "day_of_week_kyiv"
+  ],
+  "targets": {
+    "onset_1": "1 if any alert in the oblast STARTS in (t, t+1h]; defined only when no alert is active in the oblast at t",
+    "onset_3": "1 if any alert in the oblast STARTS in (t, t+3h]; defined only when no alert is active in the oblast at t",
+    "onset_6": "1 if any alert in the oblast STARTS in (t, t+6h]; defined only when no alert is active in the oblast at t"
+  },
+  "model": {
+    "lightgbm_params": {
+      "objective": "binary",
+      "metric": "binary_logloss",
+      "learning_rate": 0.05,
+      "verbose": -1,
+      "seed": 42,
+      "deterministic": true,
+      "force_col_wise": true,
+      "num_threads": 1
+    },
+    "early_stopping": "on Val, patience 50, max 500 rounds",
+    "final_fit": "Train+Val with the Val-selected number of rounds"
+  },
+  "baselines": {
+    "A": "oblast x Kyiv-hour onset rate (fit data)",
+    "B": "rolling 168h onset rate, labels lagged by k",
+    "C": "logistic regression on hours_since_last_finish",
+    "D": "oblast onset rate (fit data)",
+    "selection": "best Brier on Val, per horizon and group"
+  },
+  "thresholds": "max-F1 threshold chosen on Val predictions of the Train-only model",
+  "bootstrap": {
+    "type": "day-block (Kyiv calendar days)",
+    "n": 1000,
+    "seed": 42
+  },
+  "headline_metrics_test": [
+    {
+      "target": "onset_1",
+      "group": "ALL",
+      "n": 21461,
+      "prevalence": 0.2149,
+      "best_baseline_on_val": "Baseline_B",
+      "ap_lightgbm": 0.5209,
+      "ap_baseline": 0.5009,
+      "brier_lightgbm": 0.1345,
+      "brier_baseline": 0.1362,
+      "bss_pct_vs_baseline": 1.26
+    },
+    {
+      "target": "onset_3",
+      "group": "ALL",
+      "n": 21461,
+      "prevalence": 0.4312,
+      "best_baseline_on_val": "Baseline_B",
+      "ap_lightgbm": 0.7893,
+      "ap_baseline": 0.7796,
+      "brier_lightgbm": 0.1666,
+      "brier_baseline": 0.1688,
+      "bss_pct_vs_baseline": 1.32
+    },
+    {
+      "target": "onset_6",
+      "group": "ALL",
+      "n": 21461,
+      "prevalence": 0.5804,
+      "best_baseline_on_val": "Baseline_B",
+      "ap_lightgbm": 0.8945,
+      "ap_baseline": 0.8877,
+      "brier_lightgbm": 0.1518,
+      "brier_baseline": 0.1529,
+      "bss_pct_vs_baseline": 0.72
+    }
+  ],
+  "tests": "not run by this command (use --run-tests)",
+  "warnings": [
+    "Different source and target population than results/ (official); do not compare directly."
+  ],
+  "experiment": {
+    "dataset": "volunteer (eTryvoga, oblast level only)",
+    "naive_policy": "exclude",
+    "dropped_features": [],
+    "naive_share_by_month_last8": null
+  }
+}

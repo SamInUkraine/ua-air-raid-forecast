@@ -8,7 +8,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from sklearn.calibration import calibration_curve
 
-from features import load_events, START_UTC
+from features import load_events, START_UTC, DEFAULT_DATA_DIR
 
 
 def count_episodes(df):
@@ -26,7 +26,8 @@ def count_episodes(df):
 
 def main():
     ap_ = argparse.ArgumentParser()
-    ap_.add_argument('--data', default='ukrainian-air-raid-sirens-dataset/datasets/official_data_en.csv')
+    ap_.add_argument('--data', default=f'{DEFAULT_DATA_DIR}/datasets/official_data_en.csv')
+    ap_.add_argument('--snapshot', default=f'{DEFAULT_DATA_DIR}/processors/pkl/official_active_alerts.pkl')
     ap_.add_argument('--results_dir', default='results')
     ap_.add_argument('--output_dir', default='figures')
     a = ap_.parse_args()
@@ -46,8 +47,8 @@ def main():
     # Fig 2: bootstrap CI різниць (LGB - найкращий бейзлайн)
     fig, axes = plt.subplots(1, 2, figsize=(13, 4.5))
     labels = [f"{r.Target}\n{r.Group}" for r in b.itertuples()]
-    for ax, key, title in [(axes[0], 'Brier_Diff', 'Δ Brier (LGB − best baseline); <0 = LGB краще'),
-                           (axes[1], 'AP_Diff', 'Δ AP (LGB − best baseline); >0 = LGB краще')]:
+    for ax, key, title in [(axes[0], 'Brier_Diff', 'Δ Brier (LGB − best baseline); <0 = LGB better'),
+                           (axes[1], 'AP_Diff', 'Δ AP (LGB − best baseline); >0 = LGB better')]:
         for i, r in b.iterrows():
             ax.errorbar(i, r[f'{key}_Mean'], yerr=[[r[f'{key}_Mean'] - r[f'{key}_CI_Low']], [r[f'{key}_CI_High'] - r[f'{key}_Mean']]],
                         fmt='o', capsize=4, color='black')
@@ -67,15 +68,15 @@ def main():
     plt.tight_layout(); plt.savefig(os.path.join(a.output_dir, 'fig3_calibration_rear.png'), dpi=200); plt.close()
 
     # Fig 4: топ-10 областей за кількістю епізодів тривог (з сирих подій, не з панелі)
-    ev = load_events(a.data)
-    ev = ev[ev['started_at_dt'] >= pd.Timestamp(START_UTC)]
+    ev = load_events(a.data, snapshot_path=a.snapshot if os.path.exists(a.snapshot) else None)
+    ev = ev[(ev['started_at_dt'] >= pd.Timestamp(START_UTC)) & ~ev['open_at_cut']]
     top = count_episodes(ev).head(10)[::-1]
     fig, ax = plt.subplots(figsize=(9, 5))
     ax.barh(top.index, top.values, color='steelblue')
-    ax.set_title('Fig 4: Top-10 oblasts by alert episodes (overlapping raion alerts merged)')
+    ax.set_title(f'Fig 4: Top-10 oblasts by alert episodes since {START_UTC[:10]} (overlapping raion alerts merged)', fontsize=9)
     ax.set_xlabel('Episodes')
     plt.tight_layout(); plt.savefig(os.path.join(a.output_dir, 'fig4_top10_regions.png'), dpi=200); plt.close()
-    print(f"Графіки збережено у {a.output_dir}/")
+    print(f"Figures saved to {a.output_dir}/")
 
 
 if __name__ == '__main__':

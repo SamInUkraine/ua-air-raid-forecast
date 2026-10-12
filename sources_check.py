@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 
 KEYS = ['oblast', 'raion', 'hromada', 'level', 'started_at']
-START, END = '2025-11-01', '2026-09-06 23:00'   # overlap window (official data ends 2026-09-07)
+START = '2025-11-01 00:00+00:00'   # overlap window end = last full hour of the official data (derived below)
 
 
 def to_ns(s):
@@ -59,9 +59,17 @@ def main():
     exact30 = (v.f - v.s) == pd.Timedelta(minutes=30)
     print(f'volunteer rows: {len(v):,}; naive: {int(v.naive.sum()):,} ({v.naive.mean():.1%}); '
           f'exactly 30 min: {int(exact30.sum()):,} (of which naive {int(exact30[v.naive].sum()):,})')
+    print('naive end = start + 30 min exactly:', bool(((v.f - v.s)[v.naive] == pd.Timedelta(minutes=30)).all()))
     print('naive share by month (last 6):')
     print(v.groupby(v.s.dt.strftime('%Y-%m')).naive.mean().tail(6).round(3).to_string())
+    rec = v[v.s >= v.s.max() - pd.Timedelta(days=42)]
+    print(f'naive share by region, last 42 days ({len(rec):,} rows), top 8:')
+    print(rec.groupby('oblast').naive.agg(['mean', 'size']).sort_values('mean', ascending=False).head(8).round(3).to_string())
+    d = (o.f - o.s).dt.total_seconds()
+    print('official rows with duration exactly 3599/3600/3601 s:', [int((d == x).sum()) for x in (3599, 3600, 3601)],
+          '(the 3600 s spike = processor-imputed ends, see features.py)')
 
+    END = o.f.max().floor('h') - pd.Timedelta(hours=1)
     grid = pd.date_range(START, END, freq='1h', tz='UTC').values.astype('datetime64[ns]').astype('int64')
     rows, om, ot, vm, vt, diffs = [], 0, 0, 0, 0, []
     for ob in sorted(set(o.oblast) & set(v.oblast)):

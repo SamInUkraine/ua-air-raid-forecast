@@ -1,11 +1,181 @@
 {
-  "cleaning": {
-    "raw_rows": 299275,
-    "rows_with_missing_time_dropped": 0,
-    "clean_rows": 164617
+  "run_time_utc": "2026-10-12T15:35:09+00:00",
+  "run_time_kyiv": "2026-10-12T18:35:09+03:00",
+  "command": "python3 run_pipeline.py --run-tests",
+  "environment": {
+    "python": "3.13.16",
+    "pandas": "3.0.5",
+    "numpy": "2.5.3",
+    "scikit-learn": "1.9.1",
+    "lightgbm": "4.7.0"
   },
-  "last_valid_label_time": "2026-09-06 23:00:00+00:00",
-  "test_end_used": "2026-09-06 23:00:00+00:00",
+  "source": {
+    "source_repo": "https://github.com/Vadimkin/ukrainian-air-raid-sirens-dataset",
+    "data_file": "datasets/official_data_en.csv",
+    "data_sha256": "b396f87696243069eec0219880e87dcd642b20beb0a7bae0d0e1f61e1ed20ec4",
+    "data_file_mtime_utc (approx. retrieval time)": "2026-10-12T15:08:34+00:00",
+    "dataset_git_head": "d10c80fa696bab42822b9f05b423fc8a30e79d20",
+    "dataset_git_head_time": "2026-10-12T05:05:17+00:00",
+    "data_file_last_changed_in_commit_time": "2026-09-08T03:44:23+00:00",
+    "open_alert_snapshot": "processors/pkl/official_active_alerts.pkl",
+    "open_alert_snapshot_sha256": "d59d1c7c65baa0c5fc7d6e9e76ab667a8f52c3d2a45b2b962eb3442bea402182"
+  },
+  "freshness": {
+    "latest_raw_start_utc": "2026-09-07 05:28:22+00:00",
+    "data_cut_utc": "2026-09-07 06:09:04+00:00",
+    "data_age_days_at_run": 35.39
+  },
+  "cleaning_and_filtering": {
+    "source_file": "official_data_en.csv",
+    "raw_rows": 299275,
+    "end_policy": "causal",
+    "exact_duplicates_dropped": 113845,
+    "missing_or_malformed_time_dropped": 0,
+    "negative_duration_dropped": 0,
+    "open_at_cut_unmapped_oblast": 0,
+    "open_at_cut_total": 33,
+    "open_at_cut_stale_dropped": 3,
+    "open_at_cut_used": 30,
+    "imputed_end_rows_all_levels": 248,
+    "imputed_end_replaced_by_next_start": 248,
+    "hromada_or_luhanska_dropped": 20817,
+    "clean_rows": 164643,
+    "end_imputed_in_scope": 139,
+    "data_cut_utc": "2026-09-07 06:09:04+00:00"
+  },
+  "events_fingerprint_sha256": "315bb3a31725eee8660ffbf1c6352145b69342493764c540cf6669a558e479f8",
+  "seed": 42,
+  "last_valid_label_origin_utc": "2026-09-07 00:00:00+00:00",
+  "last_valid_rule": "t + 6h <= data_cut (open-at-cut alerts attached from the source snapshot)",
+  "splits_utc": {
+    "train": [
+      "2025-11-01 00:00:00+00:00",
+      "2026-06-26 23:00:00+00:00"
+    ],
+    "val": [
+      "2026-06-28 00:00:00+00:00",
+      "2026-07-25 23:00:00+00:00"
+    ],
+    "test": [
+      "2026-07-27 00:00:00+00:00",
+      "2026-09-07 00:00:00+00:00"
+    ]
+  },
+  "split_config": {
+    "test_days": 42,
+    "val_days": 28,
+    "gap_hours": 24
+  },
+  "split_rows": [
+    {
+      "Target": "onset_1",
+      "Split": "train",
+      "Start": "2025-11-01 00:00:00+00:00",
+      "End": "2026-06-26 23:00:00+00:00",
+      "Panel_rows": 137088,
+      "Active_rows_excluded": 37542,
+      "Warmup_NaN_dropped": 0,
+      "Eligible_rows": 99546,
+      "Positives": 10969,
+      "Prevalence": 0.1102
+    },
+    {
+      "Target": "onset_1",
+      "Split": "val",
+      "Start": "2026-06-28 00:00:00+00:00",
+      "End": "2026-07-25 23:00:00+00:00",
+      "Panel_rows": 16128,
+      "Active_rows_excluded": 4931,
+      "Warmup_NaN_dropped": 0,
+      "Eligible_rows": 11197,
+      "Positives": 1367,
+      "Prevalence": 0.1221
+    },
+    {
+      "Target": "onset_1",
+      "Split": "test",
+      "Start": "2026-07-27 00:00:00+00:00",
+      "End": "2026-09-07 00:00:00+00:00",
+      "Panel_rows": 24216,
+      "Active_rows_excluded": 8232,
+      "Warmup_NaN_dropped": 0,
+      "Eligible_rows": 15984,
+      "Positives": 2163,
+      "Prevalence": 0.1353
+    },
+    {
+      "Target": "onset_3",
+      "Split": "train",
+      "Start": "2025-11-01 00:00:00+00:00",
+      "End": "2026-06-26 23:00:00+00:00",
+      "Panel_rows": 137088,
+      "Active_rows_excluded": 37542,
+      "Warmup_NaN_dropped": 0,
+      "Eligible_rows": 99546,
+      "Positives": 23622,
+      "Prevalence": 0.2373
+    },
+    {
+      "Target": "onset_3",
+      "Split": "val",
+      "Start": "2026-06-28 00:00:00+00:00",
+      "End": "2026-07-25 23:00:00+00:00",
+      "Panel_rows": 16128,
+      "Active_rows_excluded": 4931,
+      "Warmup_NaN_dropped": 0,
+      "Eligible_rows": 11197,
+      "Positives": 2736,
+      "Prevalence": 0.2444
+    },
+    {
+      "Target": "onset_3",
+      "Split": "test",
+      "Start": "2026-07-27 00:00:00+00:00",
+      "End": "2026-09-07 00:00:00+00:00",
+      "Panel_rows": 24216,
+      "Active_rows_excluded": 8232,
+      "Warmup_NaN_dropped": 0,
+      "Eligible_rows": 15984,
+      "Positives": 4115,
+      "Prevalence": 0.2574
+    },
+    {
+      "Target": "onset_6",
+      "Split": "train",
+      "Start": "2025-11-01 00:00:00+00:00",
+      "End": "2026-06-26 23:00:00+00:00",
+      "Panel_rows": 137088,
+      "Active_rows_excluded": 37542,
+      "Warmup_NaN_dropped": 0,
+      "Eligible_rows": 99546,
+      "Positives": 34529,
+      "Prevalence": 0.3469
+    },
+    {
+      "Target": "onset_6",
+      "Split": "val",
+      "Start": "2026-06-28 00:00:00+00:00",
+      "End": "2026-07-25 23:00:00+00:00",
+      "Panel_rows": 16128,
+      "Active_rows_excluded": 4931,
+      "Warmup_NaN_dropped": 0,
+      "Eligible_rows": 11197,
+      "Positives": 3704,
+      "Prevalence": 0.3308
+    },
+    {
+      "Target": "onset_6",
+      "Split": "test",
+      "Start": "2026-07-27 00:00:00+00:00",
+      "End": "2026-09-07 00:00:00+00:00",
+      "Panel_rows": 24216,
+      "Active_rows_excluded": 8232,
+      "Warmup_NaN_dropped": 0,
+      "Eligible_rows": 15984,
+      "Positives": 5480,
+      "Prevalence": 0.3428
+    }
+  ],
   "frontline_oblasts": [
     "Chernihivska oblast",
     "Dnipropetrovska oblast",
@@ -13,5 +183,175 @@
     "Kharkivska oblast",
     "Sumska oblast",
     "Zaporizka oblast"
-  ]
+  ],
+  "frontline_rule": "inactive share in TRAIN < 0.4",
+  "features": [
+    "oblast",
+    "hours_since_last_finish",
+    "starts_1h",
+    "starts_3h",
+    "starts_6h",
+    "starts_24h",
+    "starts_168h",
+    "nat_active_oblasts_cnt",
+    "nat_starts_1h",
+    "nat_starts_3h",
+    "hour_of_day_kyiv",
+    "day_of_week_kyiv"
+  ],
+  "targets": {
+    "onset_1": "1 if any alert in the oblast STARTS in (t, t+1h]; defined only when no alert is active in the oblast at t",
+    "onset_3": "1 if any alert in the oblast STARTS in (t, t+3h]; defined only when no alert is active in the oblast at t",
+    "onset_6": "1 if any alert in the oblast STARTS in (t, t+6h]; defined only when no alert is active in the oblast at t"
+  },
+  "model": {
+    "lightgbm_params": {
+      "objective": "binary",
+      "metric": "binary_logloss",
+      "learning_rate": 0.05,
+      "verbose": -1,
+      "seed": 42,
+      "deterministic": true,
+      "force_col_wise": true,
+      "num_threads": 1
+    },
+    "early_stopping": "on Val, patience 50, max 500 rounds",
+    "final_fit": "Train+Val with the Val-selected number of rounds"
+  },
+  "baselines": {
+    "A": "oblast x Kyiv-hour onset rate (fit data)",
+    "B": "rolling 168h onset rate, labels lagged by k",
+    "C": "logistic regression on hours_since_last_finish",
+    "D": "oblast onset rate (fit data)",
+    "selection": "best Brier on Val, per horizon and group"
+  },
+  "thresholds": "max-F1 threshold chosen on Val predictions of the Train-only model",
+  "bootstrap": {
+    "type": "day-block (Kyiv calendar days)",
+    "n": 1000,
+    "seed": 42
+  },
+  "headline_metrics_test": [
+    {
+      "target": "onset_1",
+      "group": "ALL",
+      "n": 15984,
+      "prevalence": 0.1353,
+      "best_baseline_on_val": "Baseline_B",
+      "ap_lightgbm": 0.5427,
+      "ap_baseline": 0.5361,
+      "brier_lightgbm": 0.084,
+      "brier_baseline": 0.0841,
+      "bss_pct_vs_baseline": 0.11
+    },
+    {
+      "target": "onset_1",
+      "group": "Frontline",
+      "n": 633,
+      "prevalence": 0.703,
+      "best_baseline_on_val": "Baseline_B",
+      "ap_lightgbm": 0.8562,
+      "ap_baseline": 0.8435,
+      "brier_lightgbm": 0.1966,
+      "brier_baseline": 0.1873,
+      "bss_pct_vs_baseline": -4.97
+    },
+    {
+      "target": "onset_1",
+      "group": "Rear",
+      "n": 15351,
+      "prevalence": 0.1119,
+      "best_baseline_on_val": "Baseline_B",
+      "ap_lightgbm": 0.3744,
+      "ap_baseline": 0.3792,
+      "brier_lightgbm": 0.0794,
+      "brier_baseline": 0.0799,
+      "bss_pct_vs_baseline": 0.6
+    },
+    {
+      "target": "onset_3",
+      "group": "ALL",
+      "n": 15984,
+      "prevalence": 0.2574,
+      "best_baseline_on_val": "Baseline_B",
+      "ap_lightgbm": 0.7723,
+      "ap_baseline": 0.7494,
+      "brier_lightgbm": 0.1061,
+      "brier_baseline": 0.1099,
+      "bss_pct_vs_baseline": 3.5
+    },
+    {
+      "target": "onset_3",
+      "group": "Frontline",
+      "n": 633,
+      "prevalence": 0.9147,
+      "best_baseline_on_val": "Baseline_B",
+      "ap_lightgbm": 0.983,
+      "ap_baseline": 0.9647,
+      "brier_lightgbm": 0.0715,
+      "brier_baseline": 0.0781,
+      "bss_pct_vs_baseline": 8.38
+    },
+    {
+      "target": "onset_3",
+      "group": "Rear",
+      "n": 15351,
+      "prevalence": 0.2303,
+      "best_baseline_on_val": "Baseline_B",
+      "ap_lightgbm": 0.6907,
+      "ap_baseline": 0.675,
+      "brier_lightgbm": 0.1075,
+      "brier_baseline": 0.1113,
+      "bss_pct_vs_baseline": 3.36
+    },
+    {
+      "target": "onset_6",
+      "group": "ALL",
+      "n": 15984,
+      "prevalence": 0.3428,
+      "best_baseline_on_val": "Baseline_B",
+      "ap_lightgbm": 0.8565,
+      "ap_baseline": 0.8343,
+      "brier_lightgbm": 0.1095,
+      "brier_baseline": 0.1162,
+      "bss_pct_vs_baseline": 5.75
+    },
+    {
+      "target": "onset_6",
+      "group": "Frontline",
+      "n": 633,
+      "prevalence": 0.9637,
+      "best_baseline_on_val": "Baseline_D",
+      "ap_lightgbm": 0.9951,
+      "ap_baseline": 0.9834,
+      "brier_lightgbm": 0.0333,
+      "brier_baseline": 0.0399,
+      "bss_pct_vs_baseline": 16.45
+    },
+    {
+      "target": "onset_6",
+      "group": "Rear",
+      "n": 15351,
+      "prevalence": 0.3172,
+      "best_baseline_on_val": "Baseline_B",
+      "ap_lightgbm": 0.8176,
+      "ap_baseline": 0.7987,
+      "brier_lightgbm": 0.1126,
+      "brier_baseline": 0.1193,
+      "bss_pct_vs_baseline": 5.6
+    }
+  ],
+  "tests": {
+    "command": "python -m pytest -q",
+    "exit_code": 0,
+    "summary": "30 passed in 19.37s"
+  },
+  "warnings": [
+    "STALE DATA: last event in official_data_en.csv is 35.4 days older than the run time; the source stopped updating or the local copy is old (re-clone to refresh)."
+  ],
+  "experiment": {
+    "dataset": "official",
+    "end_policy": "causal",
+    "dropped_features": []
+  }
 }
